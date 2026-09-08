@@ -631,6 +631,27 @@ func Test_allDelimiterIndex(t *testing.T) {
 				{2, 3},
 			},
 		},
+		{
+			name: "testLeadingEscapedDoubleQuote",
+			args: args{
+				s:      `"a""b,c",d`,
+				substr: ",",
+			},
+			want: [][]int{
+				{8, 9},
+			},
+		},
+		{
+			name: "testEscapedDoubleQuote",
+			args: args{
+				s:      `a,"b""c,d",e`,
+				substr: ",",
+			},
+			want: [][]int{
+				{1, 2},
+				{10, 11},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

@@ -94,11 +94,23 @@ func allDelimiterIndex(s string, substr string) [][]int {
 }
 
 // skipQuoted skips the double-quoted field at the beginning of s and returns
-// the remainder with the updated offset. An unclosed quote skips only the
-// opening quote, which is what the delimiter search did before.
+// the remainder with the updated offset. A doubled "" is an escaped quote and
+// stays inside the field. An unclosed quote skips only the opening quote,
+// which is what the delimiter search did before.
 func skipQuoted(s string, offSet int) (string, int) {
-	qpos := strings.Index(s[1:], `"`)
-	return s[qpos+2:], offSet + qpos + 2
+	for i := 1; i < len(s); {
+		q := strings.IndexByte(s[i:], '"')
+		if q < 0 {
+			break
+		}
+		i += q
+		if i+1 < len(s) && s[i+1] == '"' {
+			i += 2
+			continue
+		}
+		return s[i+1:], offSet + i + 1
+	}
+	return s[1:], offSet + 1
 }
 
 // allStringIndex returns all matching string positions.
