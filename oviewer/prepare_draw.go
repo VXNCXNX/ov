@@ -319,15 +319,15 @@ func trimWidth(lc contents) (int, int) {
 // trimmedIndices returns the start and end of the trimmed contents.
 func trimmedIndices(lc contents) (int, int) {
 	ts := 0
-	for i := range lc {
-		if !lc.IsSpace(i) {
+	for i, c := range lc {
+		if c.str != " " {
 			ts = i
 			break
 		}
 	}
 	te := len(lc)
-	for i := len(lc) - 1; i >= 0; i-- {
-		if !lc.IsSpace(i) {
+	for i, l := range slices.Backward(lc) {
+		if l.str != " " {
 			te = i + 1
 			break
 		}
@@ -539,8 +539,8 @@ func (root *Root) multiColorHighlight(lineC LineC) {
 	if numC == 0 {
 		return
 	}
-	for i := len(root.Doc.multiColorRegexps) - 1; i >= 0; i-- {
-		indexes := searchPositionReg(lineC.str, root.Doc.multiColorRegexps[i])
+	for i, v := range slices.Backward(root.Doc.multiColorRegexps) {
+		indexes := searchPositionReg(lineC.str, v)
 		for _, idx := range indexes {
 			RangeStyle(lineC.lc, lineC.pos.x(idx[0]), lineC.pos.x(idx[1]), root.Doc.Style.MultiColorHighlight[i%numC])
 		}
@@ -689,7 +689,7 @@ func findColumnEnd(lc contents, indexes []int, n int, start int) int {
 // findPrevSpace returns the position of the previous space.
 func findPrevSpace(lc contents, start int) int {
 	for p := start; p > 0; p-- {
-		if lc.IsSpace(p) {
+		if lc[p].str == " " {
 			return p
 		}
 	}
@@ -699,7 +699,7 @@ func findPrevSpace(lc contents, start int) int {
 // findNextSpace returns the position of the next space or the end of contents.
 func findNextSpace(lc contents, start int) int {
 	for p := start; p < len(lc); p++ {
-		if lc.IsSpace(p) {
+		if lc[p].str == " " {
 			return p
 		}
 	}

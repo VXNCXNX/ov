@@ -1,5 +1,7 @@
 package oviewer
 
+import "slices"
+
 // columnMargin is the number of characters in the left and right margins of the screen.
 const columnMargin = 2
 
@@ -81,8 +83,8 @@ func (m *Document) optimalCursor(scr SCR, cursor int) int {
 		return len(columns) - 1
 	}
 	if cl > rightLimit {
-		for n := len(columns) - 1; n >= 0; n-- {
-			if columns[n].end < rightLimit {
+		for n, column := range slices.Backward(columns) {
+			if column.end < rightLimit {
 				return n
 			}
 		}

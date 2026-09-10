@@ -3,6 +3,7 @@ package oviewer
 import (
 	"context"
 	"log"
+	"slices"
 	"sync/atomic"
 )
 
@@ -126,8 +127,8 @@ func (m *Document) numOfWrap(lX int, lN int) int {
 
 // numOfReverseSlice returns what number x is from the back of slice.
 func numOfReverseSlice(listX []int, x int) int {
-	for n := len(listX) - 1; n >= 0; n-- {
-		if listX[n] <= x {
+	for n, l := range slices.Backward(listX) {
+		if l <= x {
 			return n
 		}
 	}

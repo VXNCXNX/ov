@@ -5,18 +5,6 @@ import (
 	"testing"
 )
 
-func intPtr(i int) *int {
-	return &i
-}
-
-func strPtr(s string) *string {
-	return &s
-}
-
-func boolPtr(b bool) *bool {
-	return &b
-}
-
 func Test_updateRuntimeSettings(t *testing.T) {
 	type args struct {
 		runtime       RunTimeSettings
@@ -49,8 +37,8 @@ func Test_updateRuntimeSettings(t *testing.T) {
 					Header:   1,
 				},
 				configGeneral: General{
-					TabWidth: intPtr(8),
-					Header:   intPtr(2),
+					TabWidth: new(8),
+					Header:   new(2),
 				},
 			},
 			want: RunTimeSettings{
@@ -65,8 +53,8 @@ func Test_updateRuntimeSettings(t *testing.T) {
 					SkipLines: 3,
 				},
 				configGeneral: General{
-					TabWidth: intPtr(8),
-					Header:   intPtr(2),
+					TabWidth: new(8),
+					Header:   new(2),
 				},
 			},
 			want: RunTimeSettings{
@@ -83,9 +71,9 @@ func Test_updateRuntimeSettings(t *testing.T) {
 					ColumnMode: true,
 				},
 				configGeneral: General{
-					TabWidth:  intPtr(8),
-					Header:    intPtr(2),
-					SkipLines: intPtr(3),
+					TabWidth:  new(8),
+					Header:    new(2),
+					SkipLines: new(3),
 				},
 			},
 			want: RunTimeSettings{
@@ -103,10 +91,10 @@ func Test_updateRuntimeSettings(t *testing.T) {
 					LineNumMode: true,
 				},
 				configGeneral: General{
-					TabWidth:   intPtr(8),
-					Header:     intPtr(2),
-					SkipLines:  intPtr(3),
-					ColumnMode: boolPtr(true),
+					TabWidth:   new(8),
+					Header:     new(2),
+					SkipLines:  new(3),
+					ColumnMode: new(true),
 				},
 			},
 			want: RunTimeSettings{
@@ -126,12 +114,12 @@ func Test_updateRuntimeSettings(t *testing.T) {
 					FollowMode: true,
 				},
 				configGeneral: General{
-					TabWidth:    intPtr(8),
-					Header:      intPtr(2),
-					SkipLines:   intPtr(3),
-					ColumnMode:  boolPtr(true),
-					ColumnWidth: boolPtr(true),
-					LineNumMode: boolPtr(true),
+					TabWidth:    new(8),
+					Header:      new(2),
+					SkipLines:   new(3),
+					ColumnMode:  new(true),
+					ColumnWidth: new(true),
+					LineNumMode: new(true),
 				},
 			},
 			want: RunTimeSettings{
@@ -153,14 +141,14 @@ func Test_updateRuntimeSettings(t *testing.T) {
 					FollowSection: true,
 				},
 				configGeneral: General{
-					TabWidth:    intPtr(8),
-					Header:      intPtr(2),
-					SkipLines:   intPtr(3),
-					ColumnMode:  boolPtr(true),
-					ColumnWidth: boolPtr(true),
-					LineNumMode: boolPtr(true),
-					WrapMode:    boolPtr(false),
-					FollowMode:  boolPtr(true),
+					TabWidth:    new(8),
+					Header:      new(2),
+					SkipLines:   new(3),
+					ColumnMode:  new(true),
+					ColumnWidth: new(true),
+					LineNumMode: new(true),
+					WrapMode:    new(false),
+					FollowMode:  new(true),
 				},
 			},
 			want: RunTimeSettings{
@@ -184,16 +172,16 @@ func Test_updateRuntimeSettings(t *testing.T) {
 					ColumnDelimiter: ",",
 				},
 				configGeneral: General{
-					TabWidth:      intPtr(8),
-					Header:        intPtr(2),
-					SkipLines:     intPtr(3),
-					ColumnMode:    boolPtr(true),
-					ColumnWidth:   boolPtr(true),
-					LineNumMode:   boolPtr(true),
-					WrapMode:      boolPtr(false),
-					FollowMode:    boolPtr(true),
-					FollowAll:     boolPtr(true),
-					FollowSection: boolPtr(true),
+					TabWidth:      new(8),
+					Header:        new(2),
+					SkipLines:     new(3),
+					ColumnMode:    new(true),
+					ColumnWidth:   new(true),
+					LineNumMode:   new(true),
+					WrapMode:      new(false),
+					FollowMode:    new(true),
+					FollowAll:     new(true),
+					FollowSection: new(true),
 				},
 			},
 			want: RunTimeSettings{
@@ -219,18 +207,18 @@ func Test_updateRuntimeSettings(t *testing.T) {
 					MarkStyleWidth: 2,
 				},
 				configGeneral: General{
-					TabWidth:        intPtr(8),
-					Header:          intPtr(2),
-					SkipLines:       intPtr(3),
-					ColumnMode:      boolPtr(true),
-					ColumnWidth:     boolPtr(true),
-					LineNumMode:     boolPtr(true),
-					WrapMode:        boolPtr(false),
-					FollowMode:      boolPtr(true),
-					FollowAll:       boolPtr(true),
-					FollowSection:   boolPtr(true),
-					FollowName:      boolPtr(true),
-					ColumnDelimiter: strPtr(","),
+					TabWidth:        new(8),
+					Header:          new(2),
+					SkipLines:       new(3),
+					ColumnMode:      new(true),
+					ColumnWidth:     new(true),
+					LineNumMode:     new(true),
+					WrapMode:        new(false),
+					FollowMode:      new(true),
+					FollowAll:       new(true),
+					FollowSection:   new(true),
+					FollowName:      new(true),
+					ColumnDelimiter: new(","),
 				},
 			},
 			want: RunTimeSettings{
@@ -258,20 +246,20 @@ func Test_updateRuntimeSettings(t *testing.T) {
 					SectionStartPosition: 5,
 				},
 				configGeneral: General{
-					TabWidth:        intPtr(8),
-					Header:          intPtr(2),
-					SkipLines:       intPtr(3),
-					ColumnMode:      boolPtr(true),
-					ColumnWidth:     boolPtr(true),
-					LineNumMode:     boolPtr(true),
-					WrapMode:        boolPtr(false),
-					FollowMode:      boolPtr(true),
-					FollowAll:       boolPtr(true),
-					FollowSection:   boolPtr(true),
-					FollowName:      boolPtr(true),
-					ColumnDelimiter: strPtr(","),
-					WatchInterval:   intPtr(10),
-					MarkStyleWidth:  intPtr(2),
+					TabWidth:        new(8),
+					Header:          new(2),
+					SkipLines:       new(3),
+					ColumnMode:      new(true),
+					ColumnWidth:     new(true),
+					LineNumMode:     new(true),
+					WrapMode:        new(false),
+					FollowMode:      new(true),
+					FollowAll:       new(true),
+					FollowSection:   new(true),
+					FollowName:      new(true),
+					ColumnDelimiter: new(","),
+					WatchInterval:   new(10),
+					MarkStyleWidth:  new(2),
 				},
 			},
 			want: RunTimeSettings{
@@ -300,7 +288,7 @@ func Test_updateRuntimeSettings(t *testing.T) {
 					Caption: "test caption",
 				},
 				configGeneral: General{
-					Wrap: strPtr("word"),
+					Wrap: new("word"),
 				},
 			},
 			want: RunTimeSettings{
@@ -316,7 +304,7 @@ func Test_updateRuntimeSettings(t *testing.T) {
 					Caption: "test caption",
 				},
 				configGeneral: General{
-					Wrap: strPtr("false"),
+					Wrap: new("false"),
 				},
 			},
 			want: RunTimeSettings{
@@ -461,37 +449,37 @@ func Test_updateRuntimeSettings_AllFields(t *testing.T) {
 					Converter:            convAlign,
 				},
 				configGeneral: General{
-					TabWidth:             intPtr(8),
-					Header:               intPtr(2),
-					VerticalHeader:       intPtr(3),
-					HeaderColumn:         intPtr(4),
-					SkipLines:            intPtr(6),
-					WatchInterval:        intPtr(15),
-					MarkStyleWidth:       intPtr(3),
-					SectionStartPosition: intPtr(7),
-					SectionHeaderNum:     intPtr(2),
-					HScrollWidth:         strPtr("20%"),
-					HScrollWidthNum:      intPtr(20),
-					RulerType:            (*RulerType)(intPtr(int(RulerAbsolute))),
-					AlternateRows:        boolPtr(false),
-					ColumnMode:           boolPtr(false),
-					ColumnWidth:          boolPtr(false),
-					ColumnRainbow:        boolPtr(false),
-					LineNumMode:          boolPtr(false),
-					WrapMode:             boolPtr(false),
-					FollowMode:           boolPtr(false),
-					FollowAll:            boolPtr(false),
-					FollowSection:        boolPtr(false),
-					FollowName:           boolPtr(false),
-					PlainMode:            boolPtr(false),
-					SectionHeader:        boolPtr(false),
-					HideOtherSection:     boolPtr(false),
-					ColumnDelimiter:      strPtr("\t"),
-					SectionDelimiter:     strPtr("###"),
-					JumpTarget:           strPtr("newTarget"),
+					TabWidth:             new(8),
+					Header:               new(2),
+					VerticalHeader:       new(3),
+					HeaderColumn:         new(4),
+					SkipLines:            new(6),
+					WatchInterval:        new(15),
+					MarkStyleWidth:       new(3),
+					SectionStartPosition: new(7),
+					SectionHeaderNum:     new(2),
+					HScrollWidth:         new("20%"),
+					HScrollWidthNum:      new(20),
+					RulerType:            (*RulerType)(new(int(RulerAbsolute))),
+					AlternateRows:        new(false),
+					ColumnMode:           new(false),
+					ColumnWidth:          new(false),
+					ColumnRainbow:        new(false),
+					LineNumMode:          new(false),
+					WrapMode:             new(false),
+					FollowMode:           new(false),
+					FollowAll:            new(false),
+					FollowSection:        new(false),
+					FollowName:           new(false),
+					PlainMode:            new(false),
+					SectionHeader:        new(false),
+					HideOtherSection:     new(false),
+					ColumnDelimiter:      new("\t"),
+					SectionDelimiter:     new("###"),
+					JumpTarget:           new("newTarget"),
 					MultiColorWords:      &[]string{"newWord1", "newWord2"},
-					Caption:              strPtr("new caption"),
-					Converter:            strPtr(convRaw),
+					Caption:              new("new caption"),
+					Converter:            new(convRaw),
 				},
 			},
 			want: RunTimeSettings{
@@ -535,7 +523,7 @@ func Test_updateRuntimeSettings_AllFields(t *testing.T) {
 					Converter: convEscaped,
 				},
 				configGeneral: General{
-					Align: boolPtr(true),
+					Align: new(true),
 				},
 			},
 			want: RunTimeSettings{
@@ -549,7 +537,7 @@ func Test_updateRuntimeSettings_AllFields(t *testing.T) {
 					Converter: convEscaped,
 				},
 				configGeneral: General{
-					Raw: boolPtr(true),
+					Raw: new(true),
 				},
 			},
 			want: RunTimeSettings{
