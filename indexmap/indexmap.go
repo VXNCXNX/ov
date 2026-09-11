@@ -1,3 +1,5 @@
+// Package indexmap provides a thread-safe map that maintains the insertion
+// order of keys.
 package indexmap
 
 import (
