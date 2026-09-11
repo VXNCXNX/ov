@@ -1,3 +1,7 @@
+// Package biomap provides a bidirectional map for comparable keys and values.
+//
+// Map stores key-value associations and supports looking up either side of an
+// association. Its methods are safe for concurrent use.
 package biomap
 
 import "sync"
