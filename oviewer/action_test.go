@@ -2266,7 +2266,7 @@ func TestRoot_setViewMode(t *testing.T) {
 				modeName: "",
 			},
 			general: General{
-				Converter: strPtr("es"),
+				Converter: new("es"),
 			},
 			wantErr:       false,
 			wantMessage:   "",
@@ -2279,7 +2279,7 @@ func TestRoot_setViewMode(t *testing.T) {
 			},
 			ViewMode: "General",
 			general: General{
-				Converter: strPtr("es"),
+				Converter: new("es"),
 			},
 			wantErr:       false,
 			wantMessage:   "Set mode general",
@@ -2293,8 +2293,8 @@ func TestRoot_setViewMode(t *testing.T) {
 				modeName: "custom",
 			},
 			general: General{
-				Caption:   strPtr("Custom Mode"),
-				Converter: strPtr("align"),
+				Caption:   new("Custom Mode"),
+				Converter: new("align"),
 			},
 			wantErr:       false,
 			wantMessage:   "Set mode custom",
@@ -2308,7 +2308,7 @@ func TestRoot_setViewMode(t *testing.T) {
 				modeName: "not",
 			},
 			general: General{
-				Caption: strPtr("Not Found Mode"),
+				Caption: new("Not Found Mode"),
 			},
 			wantErr:     true,
 			wantMessage: "view mode not found: not",

@@ -1,6 +1,7 @@
 package oviewer
 
 import (
+	"slices"
 	"strings"
 
 	"github.com/gdamore/tcell/v3"
@@ -356,8 +357,8 @@ func (pos widthPos) n(x int) int {
 		}
 	}
 	// It should return the last byte of a multi-byte character.
-	for i := len(pos) - 1; i >= 0; i-- {
-		if pos[i] == x {
+	for i, po := range slices.Backward(pos) {
+		if po == x {
 			return i
 		}
 	}
